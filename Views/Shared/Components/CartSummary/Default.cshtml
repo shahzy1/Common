@@ -1,0 +1,20 @@
+﻿@using ShoppingAssesment.Extension;
+@model ShoppingAssesment.Domain.Entities.Cart
+@{
+    var PathAndQuery = ViewContext.HttpContext.Request.PathAndQuery();
+}
+
+<div class="">
+    @if (Model.lineCollection.Count() > 0)
+    {
+        <small class="navbar-text">
+            <b>Your cart:</b>
+            @Model.lineCollection.Sum(x => x.Quantity) item(s)
+            @Model.ComputeTotalValue().ToString("c")
+        </small>}
+    <a class="btn btn-sm btn-secondary navbar-btn" asp-controller="/Cart" 
+       asp-route-returnurl="@PathAndQuery">
+        <i class="fa fa-shopping-cart"></i>
+    </a>
+    @*<div>@PathAndQuery</div>*@
+</div>

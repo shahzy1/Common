@@ -1,0 +1,15 @@
+﻿@using ShoppingAssesment.Extension;
+@{
+    ViewData["Title"] = "Privacy Policy";
+
+    //var path = Context.Request.Path;
+    //var query = Context.Request.QueryString;
+    //var PathAndQuery = path + query;
+
+    var PathAndQuery = ViewContext.HttpContext.Request.PathAndQuery();
+
+}
+<h1>@ViewData["Title"]</h1>
+
+<h3>@PathAndQuery</h3>
+<p>Use this page to detail your site's privacy policy.</p>

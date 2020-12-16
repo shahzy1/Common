@@ -1,0 +1,25 @@
+﻿@using ShoppingAssesment.Extension;
+@model ShoppingAssesment.Domain.Entities.Product
+
+@{ 
+    //var path = Context.Request.Path;
+    //var query = Context.Request.QueryString;
+    //var PathAndQuery = path + query;
+    var PathAndQuery = ViewContext.HttpContext.Request.PathAndQuery();
+} 
+<div class="well">
+    <h3>
+        <strong>@Model.Name</strong>
+        <span class="pull-right label label-primary">@Model.Price</span>
+    </h3>
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <div class="pull-right">
+            @Html.HiddenFor(x => x.ProductID)
+            @Html.Hidden("returnUrl", PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Add to cart" />
+        </div>
+    }
+    <span class="lead">@Model.Description</span>
+    <div class="lead">Available Quantity = @Model.InStock</div>
+</div>
